@@ -12,7 +12,7 @@ function PostListPage() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/posts`)
       .then((response) => {
-        // Since the API returns the array of posts directly
+        // Since the API now returns the array of posts with author names
         setPosts(response.data);
       })
       .catch((error) => {
@@ -31,7 +31,7 @@ function PostListPage() {
             {posts.map((post) => (
               <li key={post.id}>
                 <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                <p>Author: {post.author_id}</p>
+                <p>Author: {post.author_name}</p> {/* Display the author's name */}
                 <p>
                   Submitted:{" "}
                   {new Date(post.created_at)
@@ -47,8 +47,8 @@ function PostListPage() {
                     .replace(",", "")}
                 </p>
                 <p>
-                    {post.content.substring(0, 100)}...
-                    <Link to={`/posts/${post.id}`}>Read More</Link>
+                  {post.content.substring(0, 100)}...
+                  <Link to={`/posts/${post.id}`}>Read More</Link>
                 </p>
               </li>
             ))}

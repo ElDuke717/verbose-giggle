@@ -22,7 +22,7 @@ function UserProfilePage() {
 
     // Fetch the user's posts
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/posts${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/posts`, {
         params: { author_id: id },
       })
       .then((response) => {
@@ -39,7 +39,7 @@ function UserProfilePage() {
         setComments(response.data);
       })
       .catch((error) => console.error("Error fetching user comments:", error));
-  }, [id]);
+}, [id]);
 
   if (!user) {
     return <div>Loading user profile...</div>;

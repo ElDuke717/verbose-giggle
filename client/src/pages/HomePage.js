@@ -12,7 +12,9 @@ function HomePage() {
   useEffect(() => {
     // Fetch the latest 5 posts
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/posts/latest`)
+      .get(`${process.env.REACT_APP_API_URL}/api/posts`, {
+        params: { limit: 5 },
+      })
       .then((response) => {
         setLatestPosts(response.data);
       })
